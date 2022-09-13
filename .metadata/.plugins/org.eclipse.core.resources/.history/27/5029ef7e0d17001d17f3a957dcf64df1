@@ -1,0 +1,13 @@
+package com.springboot.springbootEmployees.service;
+
+import java.util.List;
+
+import com.springboot.springbootEmployees.model.Department;
+
+public interface CollegeService {
+	Department SaveDepartment(Department department);
+	List<Department> getAllDepartment();
+	Department updatedepartment(Department department,long id);
+
+
+}

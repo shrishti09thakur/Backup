@@ -1,0 +1,15 @@
+package com.springboot.springbootEmployees.service;
+
+import java.util.List;
+
+import com.springboot.springbootEmployees.model.Employees;
+
+public interface StudentsService {
+	Employees SaveEmployee(Employees employee);
+	List<Employees> getAllEmployees();
+	Employees getEmployeesById(long id);
+	Employees updateEmployee(Employees employee,long id);
+	
+
+
+}

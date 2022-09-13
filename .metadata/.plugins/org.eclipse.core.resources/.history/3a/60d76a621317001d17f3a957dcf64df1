@@ -1,0 +1,45 @@
+package com.springboot.springbootEmployees.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.springboot.springbootEmployees.model.College;
+import com.springboot.springbootEmployees.model.Department;
+import com.springboot.springbootEmployees.service.CollegeService;
+import com.springboot.springbootEmployees.service.DepartmentService;
+@RestController
+@RequestMapping("/college")
+public class CollegeController {
+	@Autowired
+	private CollegeService collegeService;
+
+	public CollegeController(CollegeService collegeService) {
+		super();
+		this.collegeService = collegeService;
+	} 
+	@PostMapping
+	public ResponseEntity<College> saveCollege(@RequestBody College college){
+		return new ResponseEntity<College>(collegeService.SaveCollege(college),HttpStatus.CREATED);
+	}
+	@GetMapping("{id}")
+	public List<College> getAllCollege(){
+		return collegeService.getAllCollege();
+	}
+	@PutMapping("{id}")
+	public ResponseEntity<College> updateEmployee(@PathVariable("id") long id ,@RequestBody College college){
+		return new ResponseEntity<College>(collegeService.updatecollege(college, id),HttpStatus.OK);
+
+	}
+
+
+}

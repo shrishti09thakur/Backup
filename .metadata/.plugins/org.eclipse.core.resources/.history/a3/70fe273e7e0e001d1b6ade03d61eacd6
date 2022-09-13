@@ -1,0 +1,8 @@
+package com.springboot.springbootEmployees.service;
+
+import com.springboot.springbootEmployees.model.Employees;
+
+public interface EmployeeService {
+	Employees SaveEmployee(Employees employee);
+
+}

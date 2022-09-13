@@ -1,0 +1,24 @@
+-------------------------------------------------------------------------------
+Test set: com.mindtree.test.TestApp
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.772 sec <<< FAILURE!
+testlogin1(com.mindtree.test.TestApp)  Time elapsed: 0.024 sec  <<< FAILURE!
+java.util.MissingResourceException: Can't find bundle for base name config, locale en_IN
+	at java.base/java.util.ResourceBundle.throwMissingResourceException(ResourceBundle.java:2045)
+	at java.base/java.util.ResourceBundle.getBundleImpl(ResourceBundle.java:1683)
+	at java.base/java.util.ResourceBundle.getBundleImpl(ResourceBundle.java:1586)
+	at java.base/java.util.ResourceBundle.getBundleImpl(ResourceBundle.java:1549)
+	at java.base/java.util.ResourceBundle.getBundle(ResourceBundle.java:858)
+	at com.mindtreedemo.App.userLogin(App.java:8)
+	at com.mindtree.test.TestApp.testlogin1(TestApp.java:13)
+
+testlogin2(com.mindtree.test.TestApp)  Time elapsed: 0 sec  <<< FAILURE!
+java.util.MissingResourceException: Can't find bundle for base name config, locale en_IN
+	at java.base/java.util.ResourceBundle.throwMissingResourceException(ResourceBundle.java:2045)
+	at java.base/java.util.ResourceBundle.getBundleImpl(ResourceBundle.java:1683)
+	at java.base/java.util.ResourceBundle.getBundleImpl(ResourceBundle.java:1586)
+	at java.base/java.util.ResourceBundle.getBundleImpl(ResourceBundle.java:1549)
+	at java.base/java.util.ResourceBundle.getBundle(ResourceBundle.java:858)
+	at com.mindtreedemo.App.userLogin(App.java:8)
+	at com.mindtree.test.TestApp.testlogin2(TestApp.java:18)
+

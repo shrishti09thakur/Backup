@@ -1,0 +1,7 @@
+package com.springboot.mindtree.entity;
+
+public class Patient {
+	private long id ;
+	
+
+}

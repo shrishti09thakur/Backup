@@ -1,0 +1,5 @@
+package com.springboot.mindtree.exception;
+
+public class ResourceNotFoundException {
+
+}

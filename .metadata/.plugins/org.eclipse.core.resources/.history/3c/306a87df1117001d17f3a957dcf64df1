@@ -1,0 +1,59 @@
+package com.springboot.springbootEmployees.service.impl;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
+import com.springboot.springbootEmployees.exception.ResourceNotFoundException;
+
+import com.springboot.springbootEmployees.model.Students;
+
+import com.springboot.springbootEmployees.repository.StudentsRepository;
+
+import com.springboot.springbootEmployees.service.StudentsService;
+
+@Service
+public  class StudentsServiceImpl implements StudentsService {
+	private StudentsRepository studentRepository;
+
+	public StudentsServiceImpl(StudentsRepository studentRepository) {
+		super();
+		this.studentRepository = studentRepository;
+	}
+
+	@Override
+	public Students SaveStudents(Students student) {
+		// TODO Auto-generated method stub
+		return studentRepository.save(student);
+	}
+
+	@Override
+	public List<Students> getAllStudents() {
+		// TODO Auto-generated method stub
+		return studentRepository.findAll();
+	}
+
+	@Override
+	public Students getStudentsById(long id) {
+		// TODO Auto-generated method stub
+		Optional<Students> student=studentRepository.findById(id);
+		if(student.isPresent()) {
+			return student.get();
+		}
+		else {
+			throw new ResourceNotFoundException("Employee","Id",id);
+		}
+	}
+
+	public Students updateStudents(Students student, long id) {
+		// TODO Auto-generated method stub
+		Students existingStudents=studentRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Employees","Id",id));
+		existingStudents.setName(student.getName());
+		existingStudents.setAge(student.getAge());
+		existingStudents.setgender(student.getgender());
+		studentRepository.save(existingStudents);
+		return existingStudents;
+	}
+
+}

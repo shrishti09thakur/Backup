@@ -1,0 +1,8 @@
+server:
+ port: 8030
+ 
+ 
+spring:
+  application:
+   name: Employee-dep-service
+ 

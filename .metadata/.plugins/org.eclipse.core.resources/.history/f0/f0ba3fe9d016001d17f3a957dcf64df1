@@ -1,0 +1,45 @@
+package com.springboot.springbootEmployees;
+import static org.hamcrest.CoreMatchers.is;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
+
+import com.springboot.springbootEmployees.model.Employees;
+import com.springboot.springbootEmployees.repository.EmployeeRepository;
+
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@AutoConfigureMockMvc
+class SpringbootEmployeesApplicationTests {
+	@Autowired
+    private MockMvc mockMvc; 
+	@Autowired
+    private EmployeeRepository employeeRepository;
+	@BeforeEach
+	@Test
+	void contextLoads() {
+		employeeRepository.deleteAll();
+	}
+	public void givenListOfEmployees_whenGetAllEmployees_thenReturnEmployeesList() throws Exception{
+		 List<Employees> listOfEmployees = new ArrayList<>();
+		 listOfEmployees.add(new Employees(1, "Souvik ","Roy","33000","Male","34"));
+		 listOfEmployees.add(new Employees(2,"Krishna ","Roy","35000","Female","44"));
+		 employeeRepository.saveAll(listOfEmployees);
+		 ResultActions response = mockMvc.perform(get("http://localhost:8061/eureka/"));
+		 response.andExpect(status().isOk())
+         .andDo(print())
+         .andExpect(jsonPath("$.size()",
+                 is(listOfEmployees.size())));
+	}
+}

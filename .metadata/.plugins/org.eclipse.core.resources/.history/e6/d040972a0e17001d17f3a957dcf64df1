@@ -1,0 +1,43 @@
+package com.springboot.springbootEmployees.service.impl;
+
+import java.util.List;
+import org.springframework.stereotype.Service;
+
+import com.springboot.springbootEmployees.exception.ResourceNotFoundException;
+import com.springboot.springbootEmployees.model.Department;
+import com.springboot.springbootEmployees.repository.DepartmentRepository;
+import com.springboot.springbootEmployees.service.DepartmentService;
+@Service
+public class DepartmentServiceImpl implements DepartmentService {
+     private DepartmentRepository departmentRepository;
+	public DepartmentServiceImpl(DepartmentRepository departmentRepository) {
+		super();
+		this.departmentRepository = departmentRepository;
+	}
+
+	@Override
+	public Department SaveDepartment(Department department) {
+		// TODO Auto-generated method stub
+		return departmentRepository.save(department);
+	}
+
+	@Override
+	public List<Department> getAllDepartment() {
+		// TODO Auto-generated method stub
+		return departmentRepository.findAll();
+	}
+
+	@Override
+	public Department updatedepartment(Department department, long id) {
+		// TODO Auto-generated method stub
+		Department existingDepartment=departmentRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Department","Id",id) );
+		existingDepartment.setName(department.getName());
+		existingDepartment.setNoofemployees(department.getNoofemployees());
+		departmentRepository.save(existingDepartment);
+		return existingDepartment;
+
+	}
+
+
+
+}

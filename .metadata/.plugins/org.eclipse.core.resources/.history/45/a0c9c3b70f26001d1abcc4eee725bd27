@@ -1,0 +1,35 @@
+package com.springboot.mindtree;
+
+import static org.hamcrest.CoreMatchers.equalToObject;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.springboot.mindtree.entity.Doctor;
+import com.springboot.mindtree.repository.DoctorRepository;
+@SpringBootTest
+class SpringbootComprhensiveApplicationTests {
+	@Autowired
+    DoctorRepository docrepo;
+	@Test
+	public void contextLoads() {
+		Doctor doc=new Doctor();
+		doc.setId(1L);
+		doc.setName("preeti");
+		doc.setAge("12");
+		doc.setGender("female");
+		doc.setPatientattended(1);
+		doc.setSpecialistfields("Liver");
+		docrepo.save(doc);
+		assertNotNull(docrepo.findById(1L).get());
+		
+	}
+	private void assertNotNull(Doctor doctor) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Test
+	public 
+
+}

@@ -1,0 +1,45 @@
+package com.springboot.springbootEmployees.service.impl;
+
+import java.util.List;
+import org.springframework.stereotype.Service;
+
+import com.springboot.springbootEmployees.exception.ResourceNotFoundException;
+import com.springboot.springbootEmployees.model.College;
+import com.springboot.springbootEmployees.model.Department;
+import com.springboot.springbootEmployees.repository.CollegeRepository;
+import com.springboot.springbootEmployees.repository.DepartmentRepository;
+import com.springboot.springbootEmployees.service.CollegeService;
+import com.springboot.springbootEmployees.service.DepartmentService;
+@Service
+public class CollegeServiceImpl implements CollegeService {
+     private CollegeRepository collegeRepository;
+	public CollegeServiceImpl(CollegeRepository collegeRepository) {
+		super();
+		this.collegeRepository = collegeRepository;
+	}
+
+	@Override
+	public College SaveCollege(College college) {
+		// TODO Auto-generated method stub
+		return collegeRepository.save(college);
+	}
+
+	@Override
+	public List<College> getAllCollege() {
+		// TODO Auto-generated method stub
+		return collegeRepository.findAll();
+	}
+
+	@Override
+	public College updatecollege(College college, long id) {
+		// TODO Auto-generated method stub
+		College existingCollege=collegeRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Department","Id",id) );
+		existingCollege.setName(college.getName());
+		collegeRepository.save(existingCollege);
+		return existingCollege;
+
+	}
+
+
+
+}

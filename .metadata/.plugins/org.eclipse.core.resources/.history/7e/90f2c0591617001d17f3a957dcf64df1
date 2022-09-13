@@ -1,0 +1,67 @@
+package com.springboot.springbootEmployees.model;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import lombok.Data;
+
+@Data
+@Entity
+@Table(name="students")
+
+public class Students {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long id;
+	@Column(name="Name")
+	private String Name;
+	
+	
+	@Column(name="age")
+	private String age;
+	@Column(name="gender")
+	private String gender;
+	
+	
+	public String getAge() {
+		return age;
+	}
+	public void setAge(String age) {
+		this.age = age;
+	}
+
+	
+	public Students(long id, String Name,  String age, String gender) {
+		super();
+		this.id = id;
+		this.Name = Name;
+		this.age = age;
+		this.gender = gender;
+	}
+	public Students() {
+		super();
+	}
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public String getName() {
+		return Name;
+	}
+	public void setName(String firstName) {
+		this.Name = firstName;
+	}
+	
+	
+	public String getgender() {
+		return gender;
+	}
+	public void setgender(String gender) {
+		this.gender = gender;
+	}
+
+}

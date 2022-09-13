@@ -1,0 +1,68 @@
+package com.springboot.springbootEmployees.model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import lombok.Data;
+
+@Data
+@Entity
+@Table(name="department")
+public class College {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long id;
+	@Column(name="name")
+	private String name;
+	@Column(name="noofstud")
+	private String noofstudents;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="cd_id",referencedColumnName="id")
+	List<Students> student=new ArrayList<>();
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getNoofstudents() {
+		return noofstudents;
+	}
+	public void setNoofemployees(String noofstudents) {
+		this.noofstudents = noofstudents;
+	}
+	public List<Students> getStu8dent() {
+		return student;
+	}
+	public void setEmployee(List<Students> student) {
+		this.student = student;
+	}
+
+	public College(long id, String name, String noofstudents) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.noofstudents = noofstudents;
+	}
+	public College() {
+		super();
+	}
+
+
+}

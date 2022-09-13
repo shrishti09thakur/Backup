@@ -1,0 +1,5 @@
+package com.springboot.mindtree.controller;
+
+public class DoctorController {
+
+}
